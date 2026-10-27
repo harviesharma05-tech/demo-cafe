@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Doon Brew Café — Demo Website</title>
+<meta name="description" content="Demo café website: menu, timings and WhatsApp ordering. Built by Harvi Sharma.">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@600;800&family=Nunito:wght@400;600;700&display=swap" rel="stylesheet">
+<style>
+:root{--cream:#FBF4E9;--coffee:#3B2418;--caramel:#C8742E;--leaf:#4F7A57;--card:#FFFFFF;--muted:#7A675A}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--cream);color:var(--coffee);font-family:'Nunito',sans-serif;line-height:1.65}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1040px;margin:0 auto;padding:0 22px}
+h1,h2,h3{font-family:'Fraunces',serif}
+:focus-visible{outline:3px solid var(--caramel);outline-offset:3px}
+
+header{position:sticky;top:0;background:rgba(251,244,233,.94);backdrop-filter:blur(8px);border-bottom:1px solid #EADBC6;z-index:10}
+.nav{display:flex;justify-content:space-between;align-items:center;padding:14px 22px;max-width:1040px;margin:0 auto}
+.logo{font-family:'Fraunces',serif;font-weight:800;font-size:1.3rem}
+.nav ul{display:flex;gap:24px;list-style:none;font-weight:600}
+.nav ul a:hover{color:var(--caramel)}
+.order{background:var(--coffee);color:var(--cream);padding:9px 18px;border-radius:999px;font-weight:700;font-size:.9rem}
+@media(max-width:700px){.nav ul{display:none}}
+
+.hero{padding:80px 0 70px;display:grid;grid-template-columns:1.1fr .9fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.2rem,6vw,4rem);line-height:1.08;font-weight:800}
+.hero p{color:var(--muted);margin:18px 0 28px;max-width:460px;font-size:1.08rem}
+.btn{display:inline-block;background:var(--caramel);color:#fff;padding:13px 26px;border-radius:12px;font-weight:700;transition:transform .2s}
+.btn:hover{transform:translateY(-2px)}
+.btn.alt{background:transparent;color:var(--coffee);border:2px solid var(--coffee);margin-left:10px}
+.cup{aspect-ratio:1;border-radius:50% 50% 46% 54%/55% 45% 55% 45%;background:radial-gradient(circle at 35% 30%,#E7A765,var(--caramel) 55%,#8A4A1C);display:grid;place-items:center;font-size:7rem;animation:float 5s ease-in-out infinite}
+@keyframes float{50%{transform:translateY(-12px) rotate(2deg)}}
+@media(max-width:760px){.hero{grid-template-columns:1fr;padding-top:50px}.cup{max-width:240px;margin:auto}}
+
+section{padding:70px 0}
+h2{font-size:clamp(1.7rem,4vw,2.4rem);margin-bottom:8px}
+.sub{color:var(--muted);margin-bottom:30px}
+
+.tabs{display:flex;gap:10px;flex-wrap:wrap;margin-bottom:26px}
+.tab{border:2px solid var(--coffee);background:transparent;color:var(--coffee);padding:8px 20px;border-radius:999px;font:inherit;font-weight:700;cursor:pointer}
+.tab[aria-selected="true"]{background:var(--coffee);color:var(--cream)}
+.menu{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:16px}
+.item{background:var(--card);border-radius:16px;padding:18px 20px;display:flex;justify-content:space-between;gap:12px;box-shadow:0 4px 18px rgba(59,36,24,.06)}
+.item h3{font-size:1.05rem}
+.item p{color:var(--muted);font-size:.9rem}
+.price{font-weight:800;color:var(--caramel);white-space:nowrap}
+
+.info{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:20px}
+.box{background:var(--card);border-radius:16px;padding:24px}
+.box h3{margin-bottom:8px}
+.box li{list-style:none;display:flex;justify-content:space-between;padding:4px 0;color:var(--muted)}
+footer{background:var(--coffee);color:var(--cream);text-align:center;padding:34px 22px;font-size:.9rem}
+.demo{background:var(--leaf);color:#fff;text-align:center;font-size:.85rem;padding:6px}
+</style>
+</head>
+<body>
+<div class="demo">Demo website made by Harvi Sharma — all names and prices are sample content.</div>
+<header>
+  <div class="nav">
+    <a class="logo" href="#top">Doon Brew</a>
+    <ul><li><a href="#menu">Menu</a></li><li><a href="#visit">Visit us</a></li></ul>
+    <a class="order" href="https://wa.me/919950410055?text=Hi%2C%20I%20want%20to%20order%20from%20Doon%20Brew" target="_blank" rel="noopener">Order on WhatsApp</a>
+  </div>
+</header>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <h1>Slow coffee for busy Dehradun mornings.</h1>
+      <p>Freshly roasted beans, warm bakes and a quiet corner to work or catch up. Open every day from 8 am.</p>
+      <a class="btn" href="#menu">See the menu</a><a class="btn alt" href="#visit">Find us</a>
+    </div>
+    <div class="cup" aria-hidden="true">☕</div>
+  </div>
+
+  <section id="menu">
+    <div class="wrap">
+      <h2>Our menu</h2>
+      <p class="sub">Tap a category to see what’s brewing.</p>
+      <div class="tabs" role="tablist" id="tabs"></div>
+      <div class="menu" id="menu-list" role="tabpanel"></div>
+    </div>
+  </section>
+
+  <section id="visit">
+    <div class="wrap">
+      <h2>Visit us</h2>
+      <p class="sub">Rajpur Road, Dehradun (sample address).</p>
+      <div class="info">
+        <div class="box"><h3>Opening hours</h3><ul><li><span>Mon – Fri</span><span>8 am – 10 pm</span></li><li><span>Sat – Sun</span><span>8 am – 11 pm</span></li></ul></div>
+        <div class="box"><h3>Reserve a table</h3><p style="color:var(--muted);margin-bottom:14px">Message us your date, time and number of guests.</p><a class="btn" href="https://wa.me/919950410055?text=Hi%2C%20I%20want%20to%20reserve%20a%20table" target="_blank" rel="noopener">Book on WhatsApp</a></div>
+      </div>
+    </div>
+  </section>
+</main>
+<footer>© 2026 Doon Brew Café (demo) · Website by Harvi Sharma</footer>
+
+<script>
+const data = {
+  Coffee: [["Cappuccino","Espresso with steamed milk foam",120],["Cold brew","Steeped for 18 hours, served over ice",160],["Filter coffee","South Indian style, strong and sweet",90]],
+  Bakes:  [["Butter croissant","Flaky and baked fresh every morning",110],["Banana walnut cake","Moist slice with toasted walnuts",130],["Choco chip cookie","Large, soft in the middle",70]],
+  Bites:  [["Paneer sandwich","Grilled with mint chutney",150],["Veg pasta","Creamy white sauce, herbs",220],["Masala fries","Crispy with house spice mix",120]]
+};
+const tabs = document.getElementById('tabs'), list = document.getElementById('menu-list');
+function show(cat){
+  list.innerHTML = data[cat].map(([n,d,p]) =>
+    `<div class="item"><div><h3>${n}</h3><p>${d}</p></div><div class="price">₹${p}</div></div>`).join('');
+  tabs.querySelectorAll('.tab').forEach(t => t.setAttribute('aria-selected', t.dataset.cat === cat));
+}
+Object.keys(data).forEach(cat => {
+  const b = document.createElement('button');
+  b.className = 'tab'; b.dataset.cat = cat; b.textContent = cat; b.setAttribute('role','tab');
+  b.addEventListener('click', () => show(cat));
+  tabs.appendChild(b);
+});
+show('Coffee');
+</script>
+</body>
+</html>
